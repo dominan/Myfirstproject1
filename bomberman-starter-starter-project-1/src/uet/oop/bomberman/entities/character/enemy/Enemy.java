@@ -85,12 +85,10 @@ public abstract class Enemy extends Character {
 			_direction = _ai.calculateDirection();
 			_steps = MAX_STEPS;
 		}
-
 		if(_direction == 0) ya--;
 		if(_direction == 2) ya++;
 		if(_direction == 3) xa--;
 		if(_direction == 1) xa++;
-
 		if(canMove(xa, ya)) {
 			_steps -= 1 + rest;
 			move(xa * _speed, ya * _speed);

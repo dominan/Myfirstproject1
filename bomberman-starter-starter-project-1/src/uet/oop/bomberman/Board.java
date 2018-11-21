@@ -197,13 +197,11 @@ public class Board implements IRender {
 			if(cur == a) {
 				continue;
 			}
-			
 			if(cur.getXTile() == x && cur.getYTile() == y) {
 				return cur;
 			}
 				
 		}
-		
 		return null;
 	}
 	
@@ -311,7 +309,19 @@ public class Board implements IRender {
 		else
 			return this._time--;
 	}
+	public Character getCharacterAt(double x, double y) {
+		Iterator<Character> itr = _characters.iterator();
 
+		Character cur;
+		while(itr.hasNext()) {
+			cur = itr.next();
+
+			if(cur.getXTile() == x && cur.getYTile() == y)
+				return cur;
+		}
+
+		return null;
+	}
 	public Keyboard getInput() {
 		return _input;
 	}

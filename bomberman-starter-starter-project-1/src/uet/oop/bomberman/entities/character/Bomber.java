@@ -5,12 +5,17 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.bomb.Flame;
+import uet.oop.bomberman.entities.bomb.FlameSegment;
 import uet.oop.bomberman.entities.character.enemy.Enemy;
+import uet.oop.bomberman.entities.tile.Wall;
 import uet.oop.bomberman.entities.tile.destroyable.Brick;
+import uet.oop.bomberman.entities.tile.item.Item;
 import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
+import uet.oop.bomberman.level.Coordinates;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -76,10 +81,20 @@ public class Bomber extends Character {
         // TODO: _timeBetweenPutBombs dùng để ngăn chặn Bomber đặt 2 Bomb cùng tại 1 vị trí trong 1 khoảng thời gian quá ngắn
         // TODO: nếu 3 điều kiện trên thỏa mãn thì thực hiện đặt bom bằng placeBomb()
         // TODO: sau khi đặt, nhớ giảm số lượng Bomb Rate và reset _timeBetweenPutBombs về 0
+
+        if(_input.space&&_timeBetweenPutBombs<0&&Game.getBombRate()>0){
+            int xb = Coordinates.pixelToTile(_x + _sprite.getSize() / 2);
+            int yb = Coordinates.pixelToTile( (_y + _sprite.getSize() / 2) - _sprite.getSize() );
+            placeBomb(xb,yb);
+            _timeBetweenPutBombs=30;
+            Game.addBombRate(-1);
+        }
     }
 
     protected void placeBomb(int x, int y) {
         // TODO: thực hiện tạo đối tượng bom, đặt vào vị trí (x, y)
+        Bomb bomb= new Bomb(x,y, _board);
+        _board.addBomb(bomb);
     }
 
     private void clearBombs() {
@@ -131,7 +146,7 @@ public class Bomber extends Character {
     @Override
     public boolean canMove(double x, double y) {
         // TODO: kiểm tra có đối tượng tại vị trí chuẩn bị di chuyển đến và có thể di chuyển tới đó hay không
-        for (int c = 0; c < 4; c++) { //colision detection for each corner of the player
+        for (int c = 0; c < 4; c++) {
             double xt = ((_x + x) + c % 2 * 11) / Game.TILES_SIZE; //divide with tiles size to pass to tile coordinate
             double yt = ((_y + y) + c / 2 * 12 - 13) / Game.TILES_SIZE; //these values are the best from multiple tests
             Entity a = _board.getEntity(xt, yt, this);
@@ -169,9 +184,10 @@ public class Bomber extends Character {
         }
         if(e instanceof Enemy) {
             kill();
-            return true;
+            return false;
         }
-        if(e instanceof Brick) return false;
+
+
         return true;
     }
 
