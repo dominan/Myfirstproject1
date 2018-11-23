@@ -69,12 +69,6 @@ public class FileLevelLoader extends LevelLoader {
 		for (int x = 0; x < _width; x++) {
 			for (int y = 0; y < _height; y++) {
 				int pos = x + y * _width;
-				/*Sprite sprite	= _map[y][x]=='#' ? Sprite.wall: Sprite.grass;
-				if(_map[y][x]=='#'){
-					_board.addEntity(pos, new LayeredEntity(x,y, new Grass(x,y,Sprite.grass), new Grass(x,y,sprite)));}
-				else {
-					_board.addEntity(pos, new Grass(x, y, sprite));
-				}*/
 				switch (_map[y][x]){
 					case '*'://Thêm brick
 						int xB = x, yB = y;
@@ -86,7 +80,7 @@ public class FileLevelLoader extends LevelLoader {
 						);
 						break;
 					case '#':
-						_board.addEntity(pos, new LayeredEntity(x,y, new Grass(x,y,Sprite.grass), new Grass(x,y,Sprite.wall)));
+						_board.addEntity(pos, new LayeredEntity(x,y, new Grass(x,y,Sprite.grass), new Wall(x,y,Sprite.wall)));
 						break;
 					case 'p'://thêm Bomber
 						int xBomber = y, yBomber = x;
@@ -105,8 +99,8 @@ public class FileLevelLoader extends LevelLoader {
 						_board.addEntity(xI + yI * _width,
 								new LayeredEntity(xI, yI,
 										new Grass(xI ,yI, Sprite.grass),
-										new FlameItem(xI, yI, Sprite.powerup_flames)/*,
-										new Brick(xI, yI, Sprite.brick)*/
+										new FlameItem(xI, yI, Sprite.powerup_flames),
+										new Brick(xI, yI, Sprite.brick)
 								)
 						);
 						break;
@@ -115,8 +109,8 @@ public class FileLevelLoader extends LevelLoader {
 						_board.addEntity(xP + yP * _width,
 								new LayeredEntity(xP, yP,
 										new Grass(xP ,yP, Sprite.grass),
-										new Portal(xP, yP, Sprite.portal)/*,
-										new Brick(xP, yP, Sprite.brick)*/
+										new Portal(xP, yP, Sprite.portal),
+										new Brick(xP, yP, Sprite.brick)
 								)
 						);
 						break;
@@ -131,9 +125,9 @@ public class FileLevelLoader extends LevelLoader {
 				}
 			}
 		}
-		int xO = 11, yO = 8;
+		/*int xO = 11, yO = 8;
 		_board.addCharacter( new Oneal(Coordinates.tileToPixel(xO), Coordinates.tileToPixel(yO) + Game.TILES_SIZE, _board));
-		_board.addEntity(xO + yO * _width, new Grass(xO, yO, Sprite.grass));
+		_board.addEntity(xO + yO * _width, new Grass(xO, yO, Sprite.grass));*/
 
 	}
 

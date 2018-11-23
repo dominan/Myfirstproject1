@@ -23,6 +23,7 @@ public class Bomber extends Character {
 
     private List<Bomb> _bombs;
     protected Keyboard _input;
+    public static List<Item> _item = new ArrayList<Item>();
 
     /**
      * nếu giá trị này < 0 thì cho phép đặt đối tượng Bomb tiếp theo,
@@ -110,7 +111,13 @@ public class Bomber extends Character {
         }
 
     }
+    public void addPowerup(Item p) {
+        if(p.isRemoved()) return;
 
+        _item.add(p);
+
+        p.setValues();
+    }
     @Override
     public void kill() {
         if (!_alive) return;
