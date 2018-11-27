@@ -78,9 +78,7 @@ public class Bomb extends AnimatedEntitiy {
 	public void explode() {
 		_timeToExplode = 0;
 	}
-	//	protected void explode() {}
 	// TODO: xử lý khi Character đứng tại vị trí Bomb
-	// TODO: tạo các Flame
 	protected void explosion() {
 		_allowedToPassThru = true;
 		_exploded = true;
@@ -89,7 +87,7 @@ public class Bomb extends AnimatedEntitiy {
 		if(a != null)  {
 			a.kill();
 		}
-
+	// TODO: tạo các Flame
 		_flames = new Flame[4];
 
 		for (int i = 0; i < _flames.length; i++) {

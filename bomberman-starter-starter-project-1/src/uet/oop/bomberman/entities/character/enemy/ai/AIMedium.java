@@ -15,10 +15,8 @@ public class AIMedium extends AI {
 	@Override
 	public int calculateDirection() {
 		// TODO: cài đặt thuật toán tìm đường đi
-		if(_bomber==null){
-			 return random.nextInt(4);
-		}
-		int vertical = random.nextInt(2);
+
+		int vertical = random.nextInt(3);
 		if(vertical == 1) {
 			int v = calculateRowDirection();
 			if(v != -1)
@@ -26,13 +24,15 @@ public class AIMedium extends AI {
 			else
 				return calculateColDirection();
 
-		} else{
+		} else if(vertical==0){
 			int h = calculateColDirection();
 
 			if(h != -1)
 				return h;
 			else
 				return calculateRowDirection();
+		}else {
+			return random.nextInt(4);
 		}
 	}
 	protected int calculateColDirection() {

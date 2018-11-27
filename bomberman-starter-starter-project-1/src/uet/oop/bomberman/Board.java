@@ -122,7 +122,7 @@ public class Board implements IRender {
 			if(_characters.get(i) instanceof Bomber == false)
 				++total;
 		}
-		
+
 		return total == 0;
 	}
 	

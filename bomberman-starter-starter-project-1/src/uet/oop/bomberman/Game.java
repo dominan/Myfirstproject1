@@ -3,7 +3,7 @@ package uet.oop.bomberman;
 import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.gui.Frame;
 import uet.oop.bomberman.input.Keyboard;
-
+import uet.oop.bomberman.sound.Sound;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -118,6 +118,7 @@ public class Game extends Canvas {
 		int frames = 0;
 		int updates = 0;
 		requestFocus();
+
 		while(_running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;

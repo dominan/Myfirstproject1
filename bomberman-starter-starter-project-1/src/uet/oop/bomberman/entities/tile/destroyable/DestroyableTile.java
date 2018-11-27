@@ -43,7 +43,7 @@ public class DestroyableTile extends Tile {
 			destroy();
 		}
 		return false;
-//		return true;
+
 	}
 	
 	public void addBelowSprite(Sprite sprite) {

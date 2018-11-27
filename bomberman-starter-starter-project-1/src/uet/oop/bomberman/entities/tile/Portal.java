@@ -7,16 +7,18 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public class Portal extends Tile {
 	protected Board _board;
-	public Portal(int x, int y, Sprite sprite) {
+	public Portal(int x, int y, Sprite sprite,Board board ) {
 		super(x, y, sprite);
+		_board=board;
 	}
-	
+
 	@Override
 	public boolean collide(Entity e) {
-		if(e instanceof Bomber) {
+		// TODO: xử lý khi Bomber đi vào
+		if(e instanceof Bomber ) {
 
 			if(_board.detectNoEnemies() == false)
-				return false;
+				return true;
 
 			if(e.getXTile() == getX() && e.getYTile() == getY()) {
 				if(_board.detectNoEnemies())
@@ -25,8 +27,7 @@ public class Portal extends Tile {
 
 			return true;
 		}
-
-		return false;
+		return true;
 	}
 
 }

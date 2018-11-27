@@ -10,6 +10,7 @@ import uet.oop.bomberman.entities.tile.Grass;
 import uet.oop.bomberman.entities.tile.Portal;
 import uet.oop.bomberman.entities.tile.Wall;
 import uet.oop.bomberman.entities.tile.destroyable.Brick;
+import uet.oop.bomberman.entities.tile.item.BombItem;
 import uet.oop.bomberman.entities.tile.item.FlameItem;
 import uet.oop.bomberman.entities.tile.item.SpeedItem;
 import uet.oop.bomberman.exceptions.LoadLevelException;
@@ -37,6 +38,7 @@ public class FileLevelLoader extends LevelLoader {
 	public void loadLevel(int level) throws LoadLevelException {
 		// TODO: đọc dữ liệu từ tệp cấu hình /levels/Level{level}.txt
 		// TODO: cập nhật các giá trị đọc được vào _width, _height, _level, _map
+
 		try{
 			URL Path= java.net.URL.class.getResource("/levels/level"+ level+".txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(Path.openStream()));
@@ -104,12 +106,32 @@ public class FileLevelLoader extends LevelLoader {
 								)
 						);
 						break;
+					case 's'://thêm Speeditem
+						int xS = x, yS = y;
+						_board.addEntity(xS + yS * _width,
+								new LayeredEntity(xS, yS,
+										new Grass(xS ,yS, Sprite.grass),
+										new SpeedItem(xS, yS, Sprite.powerup_speed),
+										new Brick(xS, yS, Sprite.brick)
+								)
+						);
+						break;
+					case 'b'://thêm Bombitem
+						int xb = x, yb = y;
+						_board.addEntity(xb + yb * _width,
+								new LayeredEntity(xb, yb,
+										new Grass(xb ,yb, Sprite.grass),
+										new BombItem(xb, yb, Sprite.powerup_bombs),
+										new Brick(xb, yb, Sprite.brick)
+								)
+						);
+						break;
 					case 'x'://Thêm Portal
 						int xP = x, yP = y;
 						_board.addEntity(xP + yP * _width,
 								new LayeredEntity(xP, yP,
 										new Grass(xP ,yP, Sprite.grass),
-										new Portal(xP, yP, Sprite.portal),
+										new Portal(xP, yP, Sprite.portal,_board),
 										new Brick(xP, yP, Sprite.brick)
 								)
 						);
@@ -125,9 +147,7 @@ public class FileLevelLoader extends LevelLoader {
 				}
 			}
 		}
-		/*int xO = 11, yO = 8;
-		_board.addCharacter( new Oneal(Coordinates.tileToPixel(xO), Coordinates.tileToPixel(yO) + Game.TILES_SIZE, _board));
-		_board.addEntity(xO + yO * _width, new Grass(xO, yO, Sprite.grass));*/
+
 
 	}
 
