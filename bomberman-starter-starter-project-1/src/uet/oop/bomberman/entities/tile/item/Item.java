@@ -11,11 +11,5 @@ public abstract class Item extends Tile {
 	}
 	public abstract void setValues();
 
-	/*(public void removeLive() {
-		if(_duration > 0)
-			_duration--;
-
-		if(_duration == 0)
-			_active = false;
-	}*/
+	
 }

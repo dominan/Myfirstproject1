@@ -4,6 +4,7 @@ import uet.oop.bomberman.graphics.IRender;
 import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
+import uet.oop.bomberman.sound.Sound;
 
 /**
  * Lớp đại diện cho tất cả thực thể trong game (Bomber, Enemy, Wall, Brick,...)
@@ -15,14 +16,14 @@ public abstract class Entity implements IRender {
 	protected Sprite _sprite;
 
 	/**
-	 * Phương thức này được gọi liên tục trong vòng lặp game,
+	 * Phương thức này được g�?i liên tục trong vòng lặp game,
 	 * mục đích để xử lý sự kiện và cập nhật trạng thái Entity
 	 */
 	@Override
 	public abstract void update();
 
 	/**
-	 * Phương thức này được gọi liên tục trong vòng lặp game,
+	 * Phương thức này được g�?i liên tục trong vòng lặp game,
 	 * mục đích để cập nhật hình ảnh của entity theo trạng thái
 	 */
 	@Override
@@ -30,6 +31,7 @@ public abstract class Entity implements IRender {
 	
 	public void remove() {
 		_removed = true;
+              
 	}
 	
 	public boolean isRemoved() {
@@ -41,7 +43,7 @@ public abstract class Entity implements IRender {
 	}
 
 	/**
-	 * Phương thức này được gọi để xử lý khi hai entity va chạm vào nhau
+	 * Phương thức này được g�?i để xử lý khi hai entity va chạm vào nhau
 	 * @param e
 	 * @return
 	 */

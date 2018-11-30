@@ -1,20 +1,20 @@
 package uet.oop.bomberman.sound;
 
-
-
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.util.HashMap;
 
 public class Sound {
     public static Sound instance;
-
     public static final String Menu = "menu.wav";
-    public static final String PlayGame = "playgame.mid";
+    public static final String PlayGame = "play.wav";
     public static final String Bomb = "newbomb.wav";
     public static final String BomberDie = "bomber_die.wav";
     public static final String EnemyDie = "monster_die.wav";
     public static final String BombBang = "bomb_bang.wav";
+    public static final String Oversound = "over.wav";
+    
+    public static final String Winsound = "win.wav";
     private HashMap<String, AudioClip> audio;
 
     public static Sound getInstance(){
@@ -38,11 +38,10 @@ public class Sound {
     }
 
     public void putAudio(String name){
-        try{
-        AudioClip au = Applet.newAudioClip(Sound.class.getResource("/sound/"+name));
-        audio.put(name, au);}catch (NullPointerException e){
-            System.out.println("loi");
-        }
+
+            AudioClip au = Applet.newAudioClip(Sound.class.getResource("/sound/"+name));
+            audio.put(name, au);
+
     }
 
     public AudioClip getAudio(String name){
@@ -51,10 +50,5 @@ public class Sound {
 
     public void stop(){
         getAudio(PlayGame).stop();
-    }
-
-    public static void main(String[] args) {
-
-        Sound.getInstance().getAudio(Sound.PlayGame).loop();
     }
 }

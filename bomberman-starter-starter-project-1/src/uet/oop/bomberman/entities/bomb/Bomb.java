@@ -4,6 +4,7 @@ import uet.oop.bomberman.Board;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.AnimatedEntitiy;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.sound.Sound;
 import uet.oop.bomberman.entities.character.Bomber;
 import uet.oop.bomberman.entities.character.Character;
 import uet.oop.bomberman.entities.character.Character;
@@ -87,6 +88,7 @@ public class Bomb extends AnimatedEntitiy {
 		if(a != null)  {
 			a.kill();
 		}
+		Sound.getInstance().getAudio(Sound.BombBang).play();
 	// TODO: tạo các Flame
 		_flames = new Flame[4];
 

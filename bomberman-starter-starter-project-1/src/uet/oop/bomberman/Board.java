@@ -17,9 +17,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import uet.oop.bomberman.sound.Sound;
 
 /**
- * Quản lý thao tác điều khiển, load level, render các màn hình của game
+ * Quản lý thao tác đi�?u khiển, load level, render các màn hình của game
  */
 public class Board implements IRender {
 	protected LevelLoader _levelLoader;
@@ -83,7 +84,12 @@ public class Board implements IRender {
 	}
 	
 	public void nextLevel() {
+            if(_levelLoader.getLevel()<5)
 		loadLevel(_levelLoader.getLevel() + 1);
+            else {
+                
+                endGame();
+            }
 	}
 	
 	public void loadLevel(int level) {
@@ -96,12 +102,15 @@ public class Board implements IRender {
 		_messages.clear();
 		
 		try {
+                   
 			_levelLoader = new FileLevelLoader(this, level);
 			_entities = new Entity[_levelLoader.getHeight() * _levelLoader.getWidth()];
 			
 			_levelLoader.createEntities();
 		} catch (LoadLevelException e) {
+                    
 			endGame();
+                        
 		}
 	}
 	
@@ -112,8 +121,9 @@ public class Board implements IRender {
 	
 	public void endGame() {
 		_screenToShow = 1;
-		_game.resetScreenDelay();
+		_game.resetScreenDelay();               
 		_game.pause();
+                
 	}
 	
 	public boolean detectNoEnemies() {
@@ -130,6 +140,7 @@ public class Board implements IRender {
 		switch (_screenToShow) {
 			case 1:
 				_screen.drawEndGame(g, _points);
+                               if(_input.space) new Frame();
 				break;
 			case 2:
 				_screen.drawChangeLevel(g, _levelLoader.getLevel());
@@ -137,7 +148,10 @@ public class Board implements IRender {
 			case 3:
 				_screen.drawPaused(g);
 				break;
+                        default:
+                                _screen.drawWinGame(g, _points);
 		}
+              
 	}
 	
 	public Entity getEntity(double x, double y, Character m) {

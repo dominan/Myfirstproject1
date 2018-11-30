@@ -13,7 +13,9 @@ import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
 
+
 import java.awt.*;
+import uet.oop.bomberman.sound.Sound;
 
 public abstract class Enemy extends Character {
 
@@ -79,7 +81,7 @@ public abstract class Enemy extends Character {
 		// TODO: Tính toán hướng đi và di chuyển Enemy theo _ai và cập nhật giá trị cho _direction
 		// TODO: sử dụng canMove() để kiểm tra xem có thể di chuyển tới điểm đã tính toán hay không
 		// TODO: sử dụng move() để di chuyển
-		// TODO: nhớ cập nhật lại giá trị cờ _moving khi thay đổi trạng thái di chuyển
+		// TODO: nhớ cập nhật lại giá trị c�? _moving khi thay đổi trạng thái di chuyển
 		int xa = 0, ya = 0;
 		if(_steps <= 0){
 			_direction = _ai.calculateDirection();
@@ -146,6 +148,7 @@ public abstract class Enemy extends Character {
 
 		Message msg = new Message("+" + _points, getXMessage(), getYMessage(), 2, Color.white, 14);
 		_board.addMessage(msg);
+                Sound.getInstance().getAudio(Sound.EnemyDie).play();
 	}
 	
 	
