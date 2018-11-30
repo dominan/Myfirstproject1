@@ -86,9 +86,8 @@ public class Board implements IRender {
 	public void nextLevel() {
             if(_levelLoader.getLevel()<5)
 		loadLevel(_levelLoader.getLevel() + 1);
-            else {
-                
-                endGame();
+            else {               
+                endGame(4);
             }
 	}
 	
@@ -107,23 +106,21 @@ public class Board implements IRender {
 			_entities = new Entity[_levelLoader.getHeight() * _levelLoader.getWidth()];
 			
 			_levelLoader.createEntities();
-		} catch (LoadLevelException e) {
-                    
-			endGame();
-                        
+		} catch (LoadLevelException e) {                 
+			endGame(1);                        
 		}
 	}
 	
 	protected void detectEndGame() {
 		if(_time <= 0)
-			endGame();
+			endGame(1);
 	}
 	
-	public void endGame() {
-		_screenToShow = 1;
+	public void endGame(int a) {
+		_screenToShow = a;
 		_game.resetScreenDelay();               
 		_game.pause();
-                
+                Sound.getInstance().stop();               
 	}
 	
 	public boolean detectNoEnemies() {
@@ -140,7 +137,7 @@ public class Board implements IRender {
 		switch (_screenToShow) {
 			case 1:
 				_screen.drawEndGame(g, _points);
-                               if(_input.space) new Frame();
+                               
 				break;
 			case 2:
 				_screen.drawChangeLevel(g, _levelLoader.getLevel());

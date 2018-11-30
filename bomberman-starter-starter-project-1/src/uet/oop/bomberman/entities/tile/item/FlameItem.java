@@ -17,7 +17,7 @@ public class FlameItem extends Item {
 
 		if(e instanceof Bomber) {
 			((Bomber) e).addPowerup(this);
-                        
+                        //Sound.getInstance().getAudio(Sound.)
 			remove();
                          
 			return true;

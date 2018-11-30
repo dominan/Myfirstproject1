@@ -6,6 +6,11 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.character.Bomber;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import javax.swing.JFrame;
 import uet.oop.bomberman.sound.Sound;
 
 /**
@@ -88,42 +93,37 @@ public class Screen {
 	
 	public void drawEndGame(Graphics g, int points) {
 		g.setColor(Color.black);
-		g.fillRect(0, 0, getRealWidth(), getRealHeight());
-		
-		Font font = new Font("Arial", Font.PLAIN, 20 * Game.SCALE);
+		g.fillRect(0, 0, getRealWidth(), getRealHeight());  
+                DrawImage dr=new DrawImage(2);               
+                dr.paint(g);		                                 		
+		Font font = new Font("Arial", Font.PLAIN, 10 * Game.SCALE);
 		g.setFont(font);
 		g.setColor(Color.white);
-                if(points>=700) drawCenteredString("YOU WIN", getRealWidth(), getRealHeight(), g);
-                else {                   
-                    drawCenteredString("GAME OVER", getRealWidth(), getRealHeight(), g);                   
-                }
-		
-		font = new Font("Arial", Font.PLAIN, 10 * Game.SCALE);
-		g.setFont(font);
-		g.setColor(Color.yellow);
-		drawCenteredString("POINTS: " + points, getRealWidth(), getRealHeight() + (Game.TILES_SIZE * 2) * Game.SCALE, g);
+		drawCenteredString("POINTS: " + points, getRealWidth(), getRealHeight()+200 + (Game.TILES_SIZE * 2) * Game.SCALE, g);
 	}
         public void drawWinGame(Graphics g, int points) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getRealWidth(), getRealHeight());
-		
-		Font font = new Font("Arial", Font.PLAIN, 20 * Game.SCALE);
+		DrawImage dr=new DrawImage(1);               
+                dr.paint(g);
+		/*Font font = new Font("Arial", Font.PLAIN, 20 * Game.SCALE);
 		g.setFont(font);
 		g.setColor(Color.white);
-		drawCenteredString("YOU WIN", getRealWidth(), getRealHeight(), g);
+		//drawCenteredString("YOU WIN", getRealWidth(), getRealHeight(), g);
 		
 		font = new Font("Arial", Font.PLAIN, 10 * Game.SCALE);
 		g.setFont(font);
 		g.setColor(Color.yellow);
-		drawCenteredString("POINTS: " + points, getRealWidth(), getRealHeight() + (Game.TILES_SIZE * 2) * Game.SCALE, g);
+		drawCenteredString("POINTS: " + points, getRealWidth(), getRealHeight() + (Game.TILES_SIZE * 2) * Game.SCALE, g);*/
 	}
 	public void drawChangeLevel(Graphics g, int level) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getRealWidth(), getRealHeight());
-		
+                DrawImage dr=new DrawImage(0);               
+                dr.paint(g);
 		Font font = new Font("Arial", Font.PLAIN, 20 * Game.SCALE);
 		g.setFont(font);
-		g.setColor(Color.white);
+		g.setColor(Color.red);
 		drawCenteredString("LEVEL " + level, getRealWidth(), getRealHeight(), g);
 		
 	}

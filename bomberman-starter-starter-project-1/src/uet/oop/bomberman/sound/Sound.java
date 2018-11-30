@@ -35,6 +35,8 @@ public class Sound {
         putAudio(BombBang);
         putAudio(BomberDie);
         putAudio(EnemyDie);
+        putAudio(Oversound);
+        putAudio(Winsound);
     }
 
     public void putAudio(String name){

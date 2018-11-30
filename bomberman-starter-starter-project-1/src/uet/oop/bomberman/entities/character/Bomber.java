@@ -131,7 +131,7 @@ public class Bomber extends Character {
     protected void afterKill() {
         if (_timeAfter > 0) --_timeAfter;
         else {
-            _board.endGame();
+            _board.endGame(1);
         }
     }
 
