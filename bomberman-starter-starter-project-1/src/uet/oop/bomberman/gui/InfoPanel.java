@@ -6,13 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Swing Panel hiển thị thông tin thời gian, điểm mà người chơi đạt được
+ * Swing Panel hiển thị thông tin th�?i gian, điểm mà ngư�?i chơi đạt được
  */
 public class InfoPanel extends JPanel {
 	
 	private JLabel timeLabel;
 	private JLabel pointsLabel;
-
+        private JLabel livesLabel;
 	public InfoPanel(Game game) {
 		setLayout(new GridLayout());
 		
@@ -24,9 +24,12 @@ public class InfoPanel extends JPanel {
 		pointsLabel.setForeground(Color.white);
 		pointsLabel.setHorizontalAlignment(JLabel.CENTER);
 		
+                livesLabel = new JLabel("Lives: " + game.getBoard().getLives());
+		livesLabel.setForeground(Color.white);
+		livesLabel.setHorizontalAlignment(JLabel.CENTER);
 		add(timeLabel);
 		add(pointsLabel);
-		
+		add(livesLabel);
 		setBackground(Color.black);
 		setPreferredSize(new Dimension(0, 40));
 	}
@@ -38,5 +41,7 @@ public class InfoPanel extends JPanel {
 	public void setPoints(int t) {
 		pointsLabel.setText("Score: " + t);
 	}
-	
+	public void setLives(int t) {
+		livesLabel.setText("Lives: " + t);		
+	}
 }

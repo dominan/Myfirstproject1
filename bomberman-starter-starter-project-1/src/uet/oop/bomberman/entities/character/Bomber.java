@@ -1,5 +1,6 @@
 package uet.oop.bomberman.entities.character;
 
+import java.awt.Color;
 import uet.oop.bomberman.Board;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
@@ -18,6 +19,8 @@ import uet.oop.bomberman.sound.Sound;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import uet.oop.bomberman.entities.Message;
+import uet.oop.bomberman.entities.tile.Grass;
 
 public class Bomber extends Character {
 
@@ -121,17 +124,25 @@ public class Bomber extends Character {
     }
     @Override
     public void kill() {
-        if (!_alive) return;
-        _alive = false;
-        Sound.getInstance().getAudio(Sound.BomberDie).play();
-
+        if (!_alive) return;                  
+            _alive=false; 
+            Sound.getInstance().getAudio(Sound.BomberDie).play();
+            _board.addLives(-1);
+            Message msg = new Message("-1 LIVE", getXMessage(), getYMessage(), 2, Color.white, 14);
+            _board.addMessage(msg);      
     }
 
     @Override
     protected void afterKill() {
         if (_timeAfter > 0) --_timeAfter;
         else {
-            _board.endGame(1);
+            if(_bombs.size() == 0) {				
+		if(_board.getLives() == 0)
+		    _board.endGame(1);
+		else
+                    _board.restartLevel();
+		}
+            //_board.endGame(1);
         }
     }
 

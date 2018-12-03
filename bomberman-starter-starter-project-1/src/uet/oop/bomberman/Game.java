@@ -38,7 +38,7 @@ public class Game extends Canvas {
 	
 	
 	protected int _screenDelay = SCREENDELAY;
-	
+	public static final int LIVES = 3;
 	private Keyboard _input;
 	private boolean _running = false;
 	private boolean _paused = true;
@@ -148,6 +148,7 @@ public class Game extends Canvas {
 			if(System.currentTimeMillis() - timer > 1000) {
 				_frame.setTime(_board.subtractTime());
 				_frame.setPoints(_board.getPoints());
+                                _frame.setLives(_board.getLives());
 				timer += 1000;
 				_frame.setTitle(TITLE + " | " + updates + " rate, " + frames + " fps");
 				updates = 0;

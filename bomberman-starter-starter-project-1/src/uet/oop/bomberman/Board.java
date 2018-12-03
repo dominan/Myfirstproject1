@@ -37,12 +37,11 @@ public class Board implements IRender {
 	
 	private int _time = Game.TIME;
 	private int _points = Game.POINTS;
-	
+	private int _lives = Game.LIVES;
 	public Board(Game game, Keyboard input, Screen screen) {
 		_game = game;
 		_input = input;
-		_screen = screen;
-		
+		_screen = screen;		
 		loadLevel(1); //start in level 1
 	}
 	
@@ -82,7 +81,9 @@ public class Board implements IRender {
 		renderCharacter(screen);
 		
 	}
-	
+	public void restartLevel() {
+		loadLevel(_levelLoader.getLevel());
+	}
 	public void nextLevel() {
             if(_levelLoader.getLevel()<5)
 		loadLevel(_levelLoader.getLevel() + 1);
@@ -99,12 +100,13 @@ public class Board implements IRender {
 		_characters.clear();
 		_bombs.clear();
 		_messages.clear();
-		
-		try {
-                   
+                if(Game.bombRadius>1){
+                        Game.addBombRadius(-1);}
+                if(Game.bombRadius>1) Game.addBombRadius(-1);
+                if(Game.bomberSpeed>1.0) Game.addBomberSpeed(-0.1);
+		try {                   
 			_levelLoader = new FileLevelLoader(this, level);
-			_entities = new Entity[_levelLoader.getHeight() * _levelLoader.getWidth()];
-			
+			_entities = new Entity[_levelLoader.getHeight() * _levelLoader.getWidth()];			
 			_levelLoader.createEntities();
 		} catch (LoadLevelException e) {                 
 			endGame(1);                        
@@ -360,7 +362,7 @@ public class Board implements IRender {
 	public int getPoints() {
 		return _points;
 	}
-
+        
 	public void addPoints(int points) {
 		this._points += points;
 	}
@@ -372,5 +374,10 @@ public class Board implements IRender {
 	public int getHeight() {
 		return _levelLoader.getHeight();
 	}
-	
+	public int getLives() {
+		return _lives;
+	}
+        public void addLives(int lives) {
+		this._lives += lives;
+	}
 }
