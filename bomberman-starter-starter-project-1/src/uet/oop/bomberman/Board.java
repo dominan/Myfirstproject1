@@ -86,7 +86,7 @@ public class Board implements IRender {
 	}
 	public void nextLevel() {
             if(_levelLoader.getLevel()<5)
-		loadLevel(_levelLoader.getLevel() + 1);
+		loadLevel(_levelLoader.getLevel() + 4);
             else {               
                 endGame(4);
             }
@@ -122,7 +122,7 @@ public class Board implements IRender {
 		_screenToShow = a;
 		_game.resetScreenDelay();               
 		_game.pause();
-                Sound.getInstance().stop();               
+                Sound.getInstance().getAudio(Sound.PlayGame).stop();               
 	}
 	
 	public boolean detectNoEnemies() {

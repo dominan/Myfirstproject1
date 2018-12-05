@@ -138,24 +138,24 @@ public class FileLevelLoader extends LevelLoader {
 								)
 						);
 						break;
-					case '2'://Thêm Oneal
+					case '2':
 						int xO = x, yO = y;
 						_board.addCharacter( new Oneal(Coordinates.tileToPixel(xO), Coordinates.tileToPixel(yO) + Game.TILES_SIZE, _board));
 						_board.addEntity(xO + yO * _width, new Grass(xO, yO, Sprite.grass));
 						break;
-                                        case '4'://Thêm Oneal
+                                        case '4':
 						int xM = x, yM = y;
 						_board.addCharacter( new Minvo(Coordinates.tileToPixel(xM), Coordinates.tileToPixel(yM) + Game.TILES_SIZE, _board));
 						_board.addEntity(xM + yM * _width, new Grass(xM, yM, Sprite.grass));
 						break;
-                                        case '3'://Thêm Oneal
+                                        case '3':
 						int xD = x, yD = y;
 						_board.addCharacter( new Doll(Coordinates.tileToPixel(xD), Coordinates.tileToPixel(yD) + Game.TILES_SIZE, _board));
 						_board.addEntity(xD + yD * _width, new Grass(xD, yD, Sprite.grass));
 						break;
-                                        case '5'://Thêm Oneal
+                                        case '5':
 						int xK = x, yK = y;
-						_board.addCharacter( new Oneal(Coordinates.tileToPixel(xK), Coordinates.tileToPixel(yK) + Game.TILES_SIZE, _board));
+						_board.addCharacter( new Kondoria(Coordinates.tileToPixel(xK), Coordinates.tileToPixel(yK) + Game.TILES_SIZE, _board));
 						_board.addEntity(xK + yK * _width, new Grass(xK, yK, Sprite.grass));
 						break;
 					default:

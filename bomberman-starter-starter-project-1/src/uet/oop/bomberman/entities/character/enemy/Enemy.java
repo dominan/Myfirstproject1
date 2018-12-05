@@ -135,7 +135,7 @@ public abstract class Enemy extends Character {
 			((Bomber) e).kill();
 			return true;
 		}
-
+                        
 		return true;
 	}
 	

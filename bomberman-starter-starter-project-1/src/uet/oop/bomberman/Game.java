@@ -120,7 +120,7 @@ public class Game extends Canvas {
 		int frames = 0;
 		int updates = 0;
 		requestFocus();
-                Sound.getInstance().stop();
+                
 		Sound.getInstance().getAudio(Sound.PlayGame).loop();
 		while(_running) {
 			long now = System.nanoTime();

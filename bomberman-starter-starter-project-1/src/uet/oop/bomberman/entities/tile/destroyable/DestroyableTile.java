@@ -3,11 +3,12 @@ package uet.oop.bomberman.entities.tile.destroyable;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.bomb.Flame;
 import uet.oop.bomberman.entities.bomb.FlameSegment;
+import uet.oop.bomberman.entities.character.enemy.Kondoria;
 import uet.oop.bomberman.entities.tile.Tile;
 import uet.oop.bomberman.graphics.Sprite;
 
 /**
- * Đối tượng cố định có thể bị phá hủy
+ * �?ối tượng cố định có thể bị phá hủy
  */
 public class DestroyableTile extends Tile {
 
@@ -42,6 +43,7 @@ public class DestroyableTile extends Tile {
 		if(e instanceof Flame) {
 			destroy();
 		}
+                if(e instanceof Kondoria) return true;
 		return false;
 
 	}
