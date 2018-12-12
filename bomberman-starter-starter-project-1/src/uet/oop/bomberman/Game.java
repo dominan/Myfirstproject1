@@ -9,6 +9,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
+
 /**
  * Tạo vòng lặp cho game, lưu trữ một vài tham số cấu hình toàn cục,
  * G�?i phương thức render(), update() cho tất cả các entity
@@ -119,9 +120,8 @@ public class Game extends Canvas {
 		double delta = 0;
 		int frames = 0;
 		int updates = 0;
-		requestFocus();
-                
-		Sound.getInstance().getAudio(Sound.PlayGame).loop();
+		requestFocus();                                
+                Sound.getInstance().getAudio(Sound.PlayGame).loop();
 		while(_running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;

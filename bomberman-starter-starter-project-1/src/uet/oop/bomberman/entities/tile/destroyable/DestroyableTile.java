@@ -4,6 +4,7 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.bomb.Flame;
 import uet.oop.bomberman.entities.bomb.FlameSegment;
 import uet.oop.bomberman.entities.character.enemy.Kondoria;
+import uet.oop.bomberman.entities.character.enemy.Ovap;
 import uet.oop.bomberman.entities.tile.Tile;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -44,6 +45,7 @@ public class DestroyableTile extends Tile {
 			destroy();
 		}
                 if(e instanceof Kondoria) return true;
+                if(e instanceof Ovap) return true;
 		return false;
 
 	}

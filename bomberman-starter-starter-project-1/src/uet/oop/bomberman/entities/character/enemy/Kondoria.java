@@ -51,7 +51,7 @@ public class Kondoria extends Enemy {
 				if(_moving)
 					_sprite = Sprite.movingSprite(Sprite.kondoria_left1, Sprite.kondoria_left2, Sprite.kondoria_left3, _animate, 60);
 				else
-					_sprite = Sprite.kondoria_right1;
+					_sprite = Sprite.kondoria_left1;
 				break;
 		}
 	}

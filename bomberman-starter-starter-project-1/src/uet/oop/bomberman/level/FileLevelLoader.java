@@ -24,6 +24,8 @@ import java.net.URL;
 import uet.oop.bomberman.entities.character.enemy.Doll;
 import uet.oop.bomberman.entities.character.enemy.Minvo;
 import uet.oop.bomberman.entities.character.enemy.Kondoria;
+import uet.oop.bomberman.entities.character.enemy.Ovap;
+import uet.oop.bomberman.entities.character.enemy.Pass;
 public class FileLevelLoader extends LevelLoader {
 
 	/**
@@ -157,6 +159,16 @@ public class FileLevelLoader extends LevelLoader {
 						int xK = x, yK = y;
 						_board.addCharacter( new Kondoria(Coordinates.tileToPixel(xK), Coordinates.tileToPixel(yK) + Game.TILES_SIZE, _board));
 						_board.addEntity(xK + yK * _width, new Grass(xK, yK, Sprite.grass));
+						break;
+                                        case '6':
+                                            int xOv = x, yOv = y;
+						_board.addCharacter( new Ovap(Coordinates.tileToPixel(xOv), Coordinates.tileToPixel(yOv) + Game.TILES_SIZE, _board));
+						_board.addEntity(xOv + yOv * _width, new Grass(xOv, yOv, Sprite.grass));
+						break;
+                                        case '7':
+                                            int xPa = x, yPa = y;
+						_board.addCharacter( new Pass(Coordinates.tileToPixel(xPa), Coordinates.tileToPixel(yPa) + Game.TILES_SIZE, _board));
+						_board.addEntity(xPa + yPa * _width, new Grass(xPa, yPa, Sprite.grass));
 						break;
 					default:
 						_board.addEntity(pos, new Grass(x, y, Sprite.grass));

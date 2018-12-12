@@ -1,21 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package uet.oop.bomberman.entities.character.enemy.ai;
 
+/**
+ *
+ * @author Minh Anh
+ */
+
+
+import java.util.List;
+import uet.oop.bomberman.Board;
+import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.character.Bomber;
 import uet.oop.bomberman.entities.character.enemy.Enemy;
 
-public class AIMedium extends AI {
+public class AIMedium3 extends AI {
 	Bomber _bomber;
 	Enemy _e;
-	
-	public AIMedium(Bomber bomber, Enemy e) {
+	List<Bomb> _bombs;
+	public AIMedium3(Bomber bomber, Enemy e, Board board) {
 		_bomber = bomber;
 		_e = e;
+                _bombs= board.getBombs();
 	}
 
 	@Override
 	public int calculateDirection() {
 		// TODO: cài đặt thuật toán tìm đư�?ng đi
-                
+            for(int i = 0; i <_bombs.size(); i++) {
+            if(_bombs.get(i).getXTile() > _e.getXTile()) return 3;
+            else if(_bombs.get(i).getXTile() < _e.getXTile()) return 1;
+            else if(_bombs.get(i).getYTile() < _e.getYTile()) return 2;
+            else
+                return 0;
+        }
 		int vertical = random.nextInt(3);
 		if(vertical == 1) {
 			int v = calculateRowDirection();
